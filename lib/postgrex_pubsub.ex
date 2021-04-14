@@ -49,6 +49,7 @@ defmodule PostgrexPubsubMultiTenant do
             json_build_object(
               'table', TG_TABLE_NAME,
               'type', TG_OP,
+              'schema', TG_TABLE_SCHEMA,
               'id', current_row.id,
               'new_row_data', row_to_json(NEW),
               'old_row_data', row_to_json(OLD)
@@ -105,6 +106,7 @@ defmodule PostgrexPubsubMultiTenant do
           json_build_object(
             'table', TG_TABLE_NAME,
             'type', TG_OP,
+            'schema', TG_TABLE_SCHEMA,
             'id', current_row.id
           )::text
         );
