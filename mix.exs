@@ -3,7 +3,7 @@ defmodule PostgrexPubsubMultiTenant.MixProject do
 
   def project do
     [
-      app: :postgrex_pubsub,
+      app: :postgrex_pubsub_multi_tenant,
       name: "Postgrex PubSub Multitenant",
       description: "A helper for creating and listening to pubsub events from postgres",
       version: "0.1.0",

@@ -4,20 +4,20 @@ This is a package for easily adding a Postgres based pubsub system to your phoen
 
 ## Installation
 
-If [available in Hex](https://hex.pm/postgrex_pubsub), the package can be installed
-by adding `postgrex_pubsub` to your list of dependencies in `mix.exs`:
+If [available in Hex](https://hex.pm/postgrex_pubsub_multi_tenant), the package can be installed
+by adding `postgrex_pubsub_multi_tenant` to your list of dependencies in `mix.exs`:
 
 ```elixir
 def deps do
   [
-    {:postgrex_pubsub, "~> 0.2.0"}
+    {:postgrex_pubsub_multi_tenant, "~> 0.1.0"}
   ]
 end
 ```
 
 Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
 and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at [https://hexdocs.pm/postgrex_pubsub](https://hexdocs.pm/postgrex_pubsub).
+be found at [https://github.com/augustwenty/postgrex_pubsub_multi_tenant](https://github.com/augustwenty/postgrex_pubsub_multi_tenant).
 
 ## Payload Based Usage
 
