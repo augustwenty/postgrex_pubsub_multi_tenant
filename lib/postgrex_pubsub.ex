@@ -6,7 +6,7 @@ defmodule PostgrexPubsubMultiTenant do
   def default_channel, do: Application.get_env(:postgrex_pubsub, :channel) || "pg_mutations"
 
   def create_table_mutation_trigger_sql_INSERT_DELETE(table_name, prefix, trigger_name, function_name) do
-    "CREATE OR REPLACE TRIGGER #{trigger_name}
+    "CREATE TRIGGER #{trigger_name}
       AFTER INSERT OR DELETE
       ON #{prefix}.#{table_name}
       FOR EACH ROW
@@ -14,7 +14,7 @@ defmodule PostgrexPubsubMultiTenant do
   end
 
   def create_table_mutation_trigger_sql_UPDATE(table_name, prefix, trigger_name, function_name, columns) do
-    "CREATE OR REPLACE TRIGGER #{trigger_name}
+    "CREATE TRIGGER #{trigger_name}
       AFTER UPDATE OF #{columns}
       ON #{prefix}.#{table_name}
       FOR EACH ROW
@@ -43,7 +43,7 @@ defmodule PostgrexPubsubMultiTenant do
           END IF;
           IF (TG_OP = 'INSERT') THEN
             OLD := NEW;
-          END IF;
+          END IF;/
         PERFORM pg_notify(
             '#{channel_to_broadcast_on}',
             json_build_object(
