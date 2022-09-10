@@ -72,6 +72,9 @@ defmodule PostgrexPubsubMultiTenant do
           IF (TG_OP = 'INSERT') THEN
             OLD := NEW;
           END IF;
+          IF (TG_OP = 'DELETE') THEN
+            NEW := OLD;
+          END IF;
         PERFORM pg_notify(
             '#{channel_to_broadcast_on}',
             json_build_object(
@@ -137,6 +140,12 @@ defmodule PostgrexPubsubMultiTenant do
           current_row := NEW;
         ELSE
           current_row := OLD;
+        END IF;
+        IF (TG_OP = 'INSERT') THEN
+          OLD := NEW;
+        END IF;
+        IF (TG_OP = 'DELETE') THEN
+          NEW := OLD;
         END IF;
       PERFORM pg_notify(
           '#{channel_to_broadcast_on}',
