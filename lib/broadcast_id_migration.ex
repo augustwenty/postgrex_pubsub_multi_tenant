@@ -2,6 +2,7 @@ defmodule PostgrexPubsubMultiTenant.BroadcastIdMigration do
   @moduledoc """
   A macro for applying mutation broadcast triggers to tables
   """
+
   defmacro __using__(opts) do
     table_name =
       opts
@@ -11,7 +12,7 @@ defmodule PostgrexPubsubMultiTenant.BroadcastIdMigration do
     prefix =
       opts
       |> Map.new()
-      |> Map.get(:prefix)
+      |> Map.get(:prefix, "public")
 
     columns =
       opts
@@ -22,11 +23,18 @@ defmodule PostgrexPubsubMultiTenant.BroadcastIdMigration do
       use Ecto.Migration
 
       def up do
-        PostgrexPubsubMultiTenant.IdStrategy.broadcast_mutation_for_table(unquote(table_name), unquote(prefix), unquote(columns))
+        PostgrexPubsubMultiTenant.IdStrategy.broadcast_mutation_for_table(
+          unquote(table_name),
+          unquote(prefix),
+          unquote(columns)
+        )
       end
 
       def down do
-        PostgrexPubsubMultiTenant.IdStrategy.delete_broadcast_trigger_for_table(unquote(table_name), unquote(prefix))
+        PostgrexPubsubMultiTenant.IdStrategy.delete_broadcast_trigger_for_table(
+          unquote(table_name),
+          unquote(prefix)
+        )
       end
     end
   end
