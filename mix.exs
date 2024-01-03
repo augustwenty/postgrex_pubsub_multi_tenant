@@ -6,7 +6,7 @@ defmodule PostgrexPubsubMultiTenant.MixProject do
       app: :postgrex_pubsub_multi_tenant,
       name: "Postgrex PubSub Multitenant",
       description: "A helper for creating and listening to pubsub events from postgres",
-      version: "0.2.5",
+      version: "0.2.6",
       elixir: "~> 1.10",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
@@ -33,7 +33,7 @@ defmodule PostgrexPubsubMultiTenant.MixProject do
     [
       {:ex_doc, ">= 0.0.0", only: :dev, runtime: false},
       {:jason, "~> 1.2"},
-      {:postgrex, "~> 0.16.2"},
+      {:postgrex, "~> 0.17.4"},
       {:ecto_sql, "~> 3.1"}
     ]
   end
