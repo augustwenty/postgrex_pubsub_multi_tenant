@@ -153,9 +153,8 @@ defmodule PostgrexPubsubMultiTenant do
             'table', TG_TABLE_NAME,
             'type', TG_OP,
             'schema', TG_TABLE_SCHEMA,
-            'id', current_row.id,
-            'new_row_data', row_to_json(NEW),
-            'old_row_data', row_to_json(OLD)
+            'new_row_id', NEW.id,
+            'old_row_id', OLD.id
           )::text
         );
       RETURN current_row;

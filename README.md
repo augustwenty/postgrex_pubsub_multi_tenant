@@ -129,10 +129,12 @@ defmodule YourApp.Listeners.Email do
   use PostgrexPubsubMultiTenant.Listener, repo: YourApp.Repo
 
   def handle_mutation_event(%{
-    "id" => row_id,
+    "new_row_id" => new_row_id,
+    "old_row_id" => old_row_id,
     "table" => table,
     "type" => type, # "INSERT", "UPDATE",
     "schema" => schema
+
   } = payload) do
     IO.inspect(row_id, label: "row_id")
   end
@@ -162,7 +164,8 @@ end
 Now when inserting or updating a user you should see the following in your terminal
 ```bash
 row_id: %{
-  "id" => "b3e041a5-2d6e-4f6f-9afc-64f326d3227f",
+  "new_row_id" => "b3e041a5-2d6e-4f6f-9afc-64f326d3227f",
+  "old_row_id" => "b3e041a5-2d6e-4f6f-9afc-999999999999",
   "table" => "users",
   "type" => "UPDATE",
   "schema" => schema
