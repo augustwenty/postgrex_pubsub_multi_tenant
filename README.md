@@ -49,7 +49,8 @@ defmodule YourApp.Listeners.Email do
     "new_row_data" => new_row_data,
     "old_row_data" => old_row_data,
     "table" => table,
-    "type" => type, # "INSERT", "UPDATE"
+    "type" => type, # "INSERT", "UPDATE",
+    "schema" => schema
   } = payload) do
     IO.inspect(payload, label: "payload")
   end
@@ -96,7 +97,8 @@ payload: %{
     "updated_at" => "2020-03-30T19:40:17"
   },
   "table" => "users",
-  "type" => "UPDATE"
+  "type" => "UPDATE",
+  "schema" => schema
 }
 ```
 
@@ -129,7 +131,8 @@ defmodule YourApp.Listeners.Email do
   def handle_mutation_event(%{
     "id" => row_id,
     "table" => table,
-    "type" => type, # "INSERT", "UPDATE"
+    "type" => type, # "INSERT", "UPDATE",
+    "schema" => schema
   } = payload) do
     IO.inspect(row_id, label: "row_id")
   end
@@ -161,7 +164,8 @@ Now when inserting or updating a user you should see the following in your termi
 row_id: %{
   "id" => "b3e041a5-2d6e-4f6f-9afc-64f326d3227f",
   "table" => "users",
-  "type" => "UPDATE"
+  "type" => "UPDATE",
+  "schema" => schema
 }
 ```
 
