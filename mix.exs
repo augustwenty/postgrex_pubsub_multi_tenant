@@ -33,7 +33,7 @@ defmodule PostgrexPubsubMultiTenant.MixProject do
     [
       {:ex_doc, ">= 0.0.0", only: :dev, runtime: false},
       {:jason, "~> 1.2"},
-      {:postgrex, "~> 0.17.4"},
+      {:postgrex, "~> 0.21"},
       {:ecto_sql, "~> 3.1"}
     ]
   end
